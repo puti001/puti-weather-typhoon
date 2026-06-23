@@ -28,7 +28,7 @@ Agent 第一次載入技能時，偵測到沒有 `config.json`，會主動問使
 >
 > 例如：臺北市大安區、屏東縣里港鄉、高雄市左營區
 
-使用者回答後，Agent 自動查 `data/tid_mapping.json` 找出對應的 TID 與座標，寫入 `config.json`。
+使用者回答後，Agent 自動查 `data/tid_mapping.json` 找出對應的 TID 與座標，寫入 `config.json`（存放在 Agent 自己的工作目錄，不會跟其他 Agent 打架）。
 
 **支援多個地點**（例如老家 + 現在住處），可後續用「新增地點」「更新地點」管理。
 
@@ -40,15 +40,17 @@ Agent 第一次載入技能時，偵測到沒有 `config.json`，會主動問使
 ## 📁 檔案結構
 
 ```
-typhoon-tracker/
-├── SKILL.md              ← 本技能檔案
-├── config.json           ← 使用者設定（安裝後自動產生）
-├── config.example.json   ← 設定範例
-├── state.json            ← 追蹤狀態（啟用/停止）
+puti-weather-typhoon/        ← 複製到你的 skills 路徑
+├── SKILL.md                  ← 本技能檔案（可多 Agent 共用）
+├── config.example.json       ← 設定範例
+├── state.json                ← 追蹤狀態模板
 ├── data/
-│   └── tid_mapping.json  ← 全台 22 縣市 368 鄉鎮 TID 對照表 + 座標
-└── README.md             ← 安裝與使用說明
+│   └── tid_mapping.json      ← 全台 22 縣市 368 鄉鎮 TID 對照表 + 座標
+└── README.md
 ```
+
+**多 Agent 各自獨立**：`config.json` 和 `state.json` 由每個 Agent 在自己工作目錄下建立，不會打架。
+例如小歐的 config 存在小歐的資料夾、大歐的存在大歐的資料夾，技能本體可以同一份。
 
 ---
 
